@@ -1,24 +1,266 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
   <head>
     <meta charset="UTF-8" />
-    <title>สวัสดี Electron</title>
-    <style>
-      body {
-        font-family: sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #4f4d4d;
-      }
-      h1 {
-        color: #f7f6f6;
-      }
-    </style>
+    <title>ฟอร์มข้อมูลลูกค้า</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>สวัสดี Electron 👋</h1>
+    <nav class="navigation-menu">
+      <a href="index.html" class="active">หน้าฟอร์ม</a>
+      <a href="follow.html">หน้าติดตามลูกค้า</a>
+    </nav>
+
+    <div class="form-page-container">
+      <div class="form-wrapper">
+        <div class="form-header">
+          <h1 class="form-title">ฟอร์มข้อมูลลูกค้าคาดหวัง</h1>
+          <p class="form-subtitle">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+        </div>
+
+        <form id="customerForm" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="firstName" class="form-label"
+                >ชื่อจริง <span class="required-star">*</span></label
+              >
+              <input
+                type="text"
+                id="firstName"
+                class="form-input"
+                placeholder="เช่น สมเด็จ"
+              />
+              <p
+                id="firstNameError"
+                class="error-message"
+                style="display: none"
+              >
+                กรุณากรอกชื่อจริง (เฉพาะตัวอักษร)
+              </p>
+            </div>
+
+            <div class="form-group">
+              <label for="lastName" class="form-label">นามสกุล</label>
+              <input
+                type="text"
+                id="lastName"
+                class="form-input"
+                placeholder="เช่น ฮุนเซน"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="phoneNumber" class="form-label"
+                >เบอร์โทรศัพท์ <span class="required-star">*</span></label
+              >
+              <input
+                type="tel"
+                id="phoneNumber"
+                maxlength="10"
+                class="form-input"
+                placeholder="เช่น 0812345678"
+              />
+              <p
+                id="phoneNumberError"
+                class="error-message"
+                style="display: none"
+              >
+                กรุณากรอกเบอร์โทรศัพท์ 10 หลัก (เฉพาะตัวเลข)
+              </p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label"
+                >ที่มาของเบอร์โทร <span class="required-star">*</span></label
+              >
+              <div class="radio-group-flex">
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    id="sourceWalkin"
+                    name="sourceOfNumber"
+                    value="เดินมาหน้าร้าน"
+                    class="form-radio-custom"
+                    checked
+                  />
+                  <label for="sourceWalkin" class="radio-label"
+                    >เดินมาหน้าร้าน</label
+                  >
+                </div>
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    id="sourcePhone"
+                    name="sourceOfNumber"
+                    value="โทรมาสอบถาม"
+                    class="form-radio-custom"
+                  />
+                  <label for="sourcePhone" class="radio-label"
+                    >โทรมาสอบถาม</label
+                  >
+                </div>
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    id="sourcePage"
+                    name="sourceOfNumber"
+                    value="ทักผ่านเพจร้าน"
+                    class="form-radio-custom"
+                  />
+                  <label for="sourcePage" class="radio-label"
+                    >ทักผ่านเพจร้าน</label
+                  >
+                </div>
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    id="sourceMarket"
+                    name="sourceOfNumber"
+                    value="เดินตลาด"
+                    class="form-radio-custom"
+                  />
+                  <label for="sourceMarket" class="radio-label">เดินตลาด</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label"
+                >ยี่ห้อรถที่สนใจ <span class="required-star">*</span></label
+              >
+              <div class="radio-group-flex">
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    id="brandHonda"
+                    name="brand"
+                    value="Honda"
+                    class="form-radio-custom"
+                    checked
+                  />
+                  <label for="brandHonda" class="radio-label">Honda</label>
+                </div>
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    id="brandYamaha"
+                    name="brand"
+                    value="Yamaha"
+                    class="form-radio-custom"
+                  />
+                  <label for="brandYamaha" class="radio-label">Yamaha</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="carModel" class="form-label"
+                >รุ่นรถ <span class="required-star">*</span></label
+              >
+              <select id="carModel" class="form-select" disabled>
+                <option disabled selected value="">-- เลือกรุ่นรถ --</option>
+              </select>
+              <p id="carModelError" class="error-message" style="display: none">
+                กรุณาเลือกรุ่นรถ
+              </p>
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label"
+                >ประเภทการขาย <span class="required-star">*</span></label
+              >
+              <div class="radio-group-flex">
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    id="saleCash"
+                    name="salesType"
+                    value="ขายสด"
+                    class="form-radio-custom"
+                    checked
+                  />
+                  <label for="saleCash" class="radio-label">ขายสด</label>
+                </div>
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    id="saleInstallment"
+                    name="salesType"
+                    value="ขายผ่อน"
+                    class="form-radio-custom"
+                  />
+                  <label for="saleInstallment" class="radio-label"
+                    >ขายผ่อน</label
+                  >
+                </div>
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    id="saleFinance"
+                    name="salesType"
+                    value="ขายไฟแนนซ์"
+                    class="form-radio-custom"
+                  />
+                  <label for="saleFinance" class="radio-label"
+                    >ขายไฟแนนซ์</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="notes" class="form-label"
+                >หมายเหตุ <span class="required-star">*</span></label
+              >
+              <textarea
+                id="notes"
+                rows="4"
+                class="form-textarea"
+                placeholder="ระบุรายละเอียดเพิ่มเติม... (อย่างน้อย 15 ตัวอักษร)"
+              ></textarea>
+              <p id="notesError" class="error-message" style="display: none">
+                กรุณากรอกหมายเหตุอย่างน้อย 15 ตัวอักษร
+              </p>
+            </div>
+          </div>
+
+          <div class="submit-container">
+            <button
+              type="submit"
+              id="submitButton"
+              class="submit-button"
+              disabled
+            >
+              บันทึกข้อมูล
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="confirmModal" class="modal-overlay" style="display: none">
+      <div class="modal-content">
+        <h3 class="modal-title">ยืนยันการบันทึกข้อมูล</h3>
+        <p class="modal-body">คุณต้องการยืนยันการบันทึกข้อมูลนี้ใช่หรือไม่?</p>
+        <div class="modal-actions">
+          <button id="cancelButton" class="modal-button cancel">ยกเลิก</button>
+          <button id="confirmButton" class="modal-button confirm">
+            ยืนยัน
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="successMessage" class="success-message" style="display: none">
+      บันทึกข้อมูลเรียบร้อยแล้ว!
+    </div>
+
+    <script src="index.js"></script>
   </body>
 </html>

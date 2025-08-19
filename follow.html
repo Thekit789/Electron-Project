@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ติดตามลูกค้า</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navigation-menu">
+      <a href="index.html">หน้าฟอร์ม</a>
+      <a href="follow.html" class="active">หน้าติดตามลูกค้า</a>
+    </nav>
+
+    <div class="page-container">
+      <div class="main-content">
+        <div class="top-section-grid">
+          <div class="card">
+            <h2 class="card-title">ค้นหาลูกค้า</h2>
+            <div class="form-group">
+              <label for="searchName" class="form-label">ชื่อ / นามสกุล</label>
+              <input
+                type="text"
+                id="searchName"
+                class="form-input"
+                placeholder="ค้นหาด้วยชื่อ..."
+              />
+            </div>
+            <div class="form-group search-group-spacing">
+              <label for="searchPhone" class="form-label">เบอร์โทรศัพท์</label>
+              <input
+                type="text"
+                id="searchPhone"
+                class="form-input"
+                placeholder="ค้นหาด้วยเบอร์โทร..."
+              />
+            </div>
+          </div>
+
+          <div class="card">
+            <h2 class="card-title">
+              บันทึกการติดตาม
+              <span
+                id="selectedCustomerName"
+                class="selected-customer-name"
+              ></span>
+            </h2>
+            <form id="followUpForm">
+              <div class="follow-up-form">
+                <div class="form-group">
+                  <label class="form-label">อัพเดทการโทร</label>
+                  <div class="radio-group-grid-followup">
+                    <div class="radio-item">
+                      <input
+                        type="radio"
+                        id="cs1"
+                        name="callStatus"
+                        value="ลูกค้าสะดวกคุย"
+                        class="form-radio-custom"
+                        checked
+                      /><label for="cs1" class="radio-label"
+                        >ลูกค้าสะดวกคุย</label
+                      >
+                    </div>
+                    <div class="radio-item">
+                      <input
+                        type="radio"
+                        id="cs2"
+                        name="callStatus"
+                        value="ลูกค้าไม่สะดวกคุย"
+                        class="form-radio-custom"
+                      /><label for="cs2" class="radio-label"
+                        >ลูกค้าไม่สะดวกคุย</label
+                      >
+                    </div>
+                    <div class="radio-item">
+                      <input
+                        type="radio"
+                        id="cs3"
+                        name="callStatus"
+                        value="โทรติด/ไม่รับสาย"
+                        class="form-radio-custom"
+                      /><label for="cs3" class="radio-label"
+                        >โทรติด/ไม่รับสาย</label
+                      >
+                    </div>
+                    <div class="radio-item">
+                      <input
+                        type="radio"
+                        id="cs4"
+                        name="callStatus"
+                        value="โทรไม่ติด"
+                        class="form-radio-custom"
+                      /><label for="cs4" class="radio-label">โทรไม่ติด</label>
+                    </div>
+                    <div class="radio-item">
+                      <input
+                        type="radio"
+                        id="cs5"
+                        name="callStatus"
+                        value="เบอร์ผิด"
+                        class="form-radio-custom"
+                      /><label for="cs5" class="radio-label">เบอร์ผิด</label>
+                    </div>
+                  </div>
+                </div>
+
+                <fieldset
+                  id="appointmentSection"
+                  class="appointment-scheduling-section"
+                >
+                  <div class="follow-up-grid">
+                    <div class="form-group">
+                      <label for="appointmentDate" class="form-label"
+                        >วันที่ลูกค้านัด</label
+                      >
+                      <input
+                        type="date"
+                        id="appointmentDate"
+                        name="appointmentDate"
+                        class="form-input"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">ช่วงเวลา</label>
+                      <div class="radio-group-flex">
+                        <div class="radio-item">
+                          <input
+                            type="radio"
+                            id="ts1"
+                            name="timeSlot"
+                            value="ช่วงเช้า"
+                            class="form-radio-custom"
+                            checked
+                          /><label for="ts1" class="radio-label"
+                            >ช่วงเช้า</label
+                          >
+                        </div>
+                        <div class="radio-item">
+                          <input
+                            type="radio"
+                            id="ts2"
+                            name="timeSlot"
+                            value="ช่วงบ่าย"
+                            class="form-radio-custom"
+                          /><label for="ts2" class="radio-label"
+                            >ช่วงบ่าย</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <fieldset
+                    id="appointmentFollowUpSection"
+                    class="conditional-section"
+                    disabled
+                  >
+                    <div class="form-group">
+                      <label class="form-label">ติดตามการนัด</label>
+                      <div class="radio-group-flex">
+                        <div class="radio-item">
+                          <input
+                            type="radio"
+                            id="as1"
+                            name="appointmentStatus"
+                            value="มาตามนัด"
+                            class="form-radio-custom"
+                          /><label for="as1" class="radio-label"
+                            >มาตามนัด</label
+                          >
+                        </div>
+                        <div class="radio-item">
+                          <input
+                            type="radio"
+                            id="as2"
+                            name="appointmentStatus"
+                            value="ไม่มาตามนัด"
+                            class="form-radio-custom"
+                          /><label for="as2" class="radio-label"
+                            >ไม่มาตามนัด</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <fieldset
+                      id="showedUpSection"
+                      class="follow-up-grid sub-section"
+                      disabled
+                    >
+                      <div class="form-group">
+                        <label class="form-label">ลูกค้าทำเรื่อง</label>
+                        <div class="radio-group-flex">
+                          <div class="radio-item">
+                            <input
+                              type="radio"
+                              id="custS1"
+                              name="customerStatus"
+                              value="ผ่าน"
+                              class="form-radio-custom"
+                            /><label for="custS1" class="radio-label"
+                              >ผ่าน</label
+                            >
+                          </div>
+                          <div class="radio-item">
+                            <input
+                              type="radio"
+                              id="custS2"
+                              name="customerStatus"
+                              value="ไม่ผ่าน"
+                              class="form-radio-custom"
+                            /><label for="custS2" class="radio-label"
+                              >ไม่ผ่าน</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">ประเภทการขาย</label>
+                        <div class="radio-group-flex">
+                          <div class="radio-item">
+                            <input
+                              type="radio"
+                              id="st1"
+                              name="salesType"
+                              value="ขายสด"
+                              class="form-radio-custom"
+                            /><label for="st1" class="radio-label">ขายสด</label>
+                          </div>
+                          <div class="radio-item">
+                            <input
+                              type="radio"
+                              id="st2"
+                              name="salesType"
+                              value="ขายผ่อน"
+                              class="form-radio-custom"
+                            /><label for="st2" class="radio-label"
+                              >ขายผ่อน</label
+                            >
+                          </div>
+                          <div class="radio-item">
+                            <input
+                              type="radio"
+                              id="st3"
+                              name="salesType"
+                              value="ขายไฟแนนซ์"
+                              class="form-radio-custom"
+                            /><label for="st3" class="radio-label"
+                              >ขายไฟแนนซ์</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset
+                      id="noShowSection"
+                      class="form-group sub-section"
+                      disabled
+                    >
+                      <label class="form-label">การติดตามเพิ่มเติม</label>
+                      <div class="radio-group-flex">
+                        <div class="radio-item">
+                          <input
+                            type="radio"
+                            id="ff1"
+                            name="furtherFollowUp"
+                            value="ติดต่อภายในอาทิตย์"
+                            class="form-radio-custom"
+                          /><label for="ff1" class="radio-label"
+                            >ติดต่อภายในอาทิตย์</label
+                          >
+                        </div>
+                        <div class="radio-item">
+                          <input
+                            type="radio"
+                            id="ff2"
+                            name="furtherFollowUp"
+                            value="ติดต่อภายในเดือน"
+                            class="form-radio-custom"
+                          /><label for="ff2" class="radio-label"
+                            >ติดต่อภายในเดือน</label
+                          >
+                        </div>
+                        <div class="radio-item">
+                          <input
+                            type="radio"
+                            id="ff3"
+                            name="furtherFollowUp"
+                            value="ติดต่อภายในไตรมาส"
+                            class="form-radio-custom"
+                          /><label for="ff3" class="radio-label"
+                            >ติดต่อภายในไตรมาส</label
+                          >
+                        </div>
+                      </div>
+                    </fieldset>
+                  </fieldset>
+                </fieldset>
+
+                <div id="notesGroup" class="form-group">
+                  <label for="followUpNotes" class="form-label">หมายเหตุ</label>
+                  <textarea
+                    id="followUpNotes"
+                    rows="3"
+                    class="form-textarea"
+                    placeholder="เพิ่มหมายเหตุ..."
+                  ></textarea>
+                </div>
+              </div>
+              <div class="submit-container">
+                <button
+                  type="submit"
+                  id="saveFollowUpButton"
+                  class="submit-button"
+                  disabled
+                >
+                  บันทึกการติดตาม
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="card data-table-card">
+          <h2 class="card-title">ข้อมูลลูกค้าที่ส่งมาจากสาขา</h2>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ลำดับ</th>
+                  <th>สาขา</th>
+                  <th>วันที่</th>
+                  <th>ชื่อ-สกุล</th>
+                  <th>เบอร์โทร</th>
+                  <th>ประเภทการขาย</th>
+                  <th>รุ่นรถ</th>
+                </tr>
+              </thead>
+              <tbody id="customerTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="follow.js"></script>
+  </body>
+</html>

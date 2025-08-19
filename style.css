@@ -1,0 +1,611 @@
+/* --- เริ่มต้น สไตล์จาก FormView.vue --- */
+/* General Page Styles */
+.form-page-container {
+  font-family: "Sarabun", sans-serif;
+  background: linear-gradient(to bottom, #0b0b2b, #1b2735 70%, #090a0f);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.form-wrapper {
+  width: 100%;
+  max-width: 56rem;
+  position: relative;
+  background-image: linear-gradient(to bottom, #f5f8fc, #f7f8fa);
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  padding: 2.5rem;
+}
+
+/* Header */
+.form-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.form-title {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+.form-subtitle {
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+/* Form Layout */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem 2rem;
+}
+@media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form Elements */
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+.required-star {
+  color: #ef4444;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #f9fafb;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px #bfdbfe;
+}
+
+.form-select:disabled {
+  background-color: #e5e7eb;
+  cursor: not-allowed;
+}
+
+/* Validation Styles */
+.error-border {
+  border-color: #f87171 !important;
+}
+.error-message {
+  color: #ef4444;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Radio Buttons */
+.radio-group-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.radio-item {
+  display: flex;
+  align-items: center;
+}
+.radio-label {
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+  cursor: pointer;
+}
+.form-radio-custom {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 50%;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid #d1d5db;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.form-radio-custom:checked {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
+}
+
+/* Submit Button */
+.submit-container {
+  margin-top: 2rem;
+}
+.submit-button {
+  width: 100%;
+  color: white;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #2563eb;
+  transition: background-color 0.3s, transform 0.2s;
+  cursor: pointer;
+}
+.submit-button:hover:not(:disabled) {
+  background-color: #1d4ed8;
+  transform: scale(1.02);
+}
+.submit-button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
+}
+.modal-content {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 2rem;
+  width: 100%;
+  max-width: 28rem;
+  text-align: center;
+}
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+.modal-body {
+  color: #4b5563;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.modal-button {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+.modal-button.cancel {
+  background-color: #e5e7eb;
+  color: #1f2937;
+}
+.modal-button.cancel:hover {
+  background-color: #d1d5db;
+}
+.modal-button.confirm {
+  background-color: #2563eb;
+  color: white;
+}
+.modal-button.confirm:hover {
+  background-color: #1d4ed8;
+}
+
+/* Success Message */
+.success-message {
+  position: fixed;
+  top: 5rem;
+  left: 50%; /* 1. ดันขอบซ้ายไปที่กึ่งกลาง */
+  transform: translateX(-50%); /* 2. ดึงตัวเองกลับมาครึ่งหนึ่ง */
+  background-color: #22c55e;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  z-index: 50;
+}
+
+/* Transition */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* --- สิ้นสุด สไตล์จาก FormView.vue --- */
+
+/* --- เริ่มต้น สไตล์จาก FollowView.vue --- */
+.page-container {
+  font-family: "Sarabun", sans-serif;
+  background: linear-gradient(to bottom, #0b0b2b, #1b2735 70%, #090a0f);
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+.main-content {
+  width: 100%;
+  max-width: 80rem; /* 1280px */
+  margin: 0 auto;
+}
+
+/* Card Styles */
+.card {
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+}
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.75rem;
+}
+.selected-customer-name {
+  color: #1d4ed8;
+  font-weight: 500;
+}
+
+/* Layout Grids */
+.top-section-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .top-section-grid {
+    grid-template-columns: 1fr 2.5fr;
+  }
+}
+
+.follow-up-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.follow-up-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.5rem;
+}
+
+/* Styling for the appointment scheduling section */
+.appointment-scheduling-section {
+  background-color: #f9fafb;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  transition: opacity 0.3s ease;
+}
+
+/* Disabled Fieldset */
+fieldset:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Conditional Sections */
+.conditional-section {
+  /* border-top: 1px solid #f3f4f6; */
+  padding-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: opacity 0.3s ease;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+}
+.sub-section {
+  background-color: #f9fafb;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  transition: opacity 0.3s ease;
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: 0;
+}
+.form-group.full-span {
+  grid-column: 1 / -1;
+}
+.form-group.search-group-spacing {
+  margin-top: 1rem;
+}
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px #bfdbfe;
+}
+.highlight-notes .form-textarea {
+  border-color: #fbbf24;
+  box-shadow: 0 0 0 2px #fde68a;
+}
+
+/* Radio Buttons */
+.radio-group-grid-followup {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem 1rem;
+}
+@media (min-width: 768px) {
+  .radio-group-grid-followup {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.radio-group-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  /* padding-left: 5rem; */
+}
+.radio-item {
+  display: flex;
+  align-items: center;
+}
+.radio-label {
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+  cursor: pointer;
+}
+.form-radio-custom {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 50%;
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 2px solid #d1d5db;
+  transition: all 0.2s;
+  cursor: pointer;
+  position: relative;
+  top: -1px;
+}
+.form-radio-custom:checked {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
+}
+
+/* Submit Button */
+.submit-container {
+  margin-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.submit-button {
+  color: white;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  background-color: #16a34a;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+.submit-button:hover:not(:disabled) {
+  background-color: #15803d;
+}
+.submit-button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Data Table */
+.data-table-card {
+  overflow-x: auto;
+}
+.table-container {
+  max-height: 400px; /* 10 rows approx */
+  overflow-y: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.data-table th,
+.data-table td {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+.data-table th {
+  background-color: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.data-table tbody tr {
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+.data-table tbody tr:hover {
+  background-color: #eff6ff;
+}
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.data-table .no-data {
+  text-align: center;
+  color: #6b7280;
+  padding: 2rem;
+}
+.data-table .selected-row {
+  background-color: #dbeafe;
+  font-weight: 500;
+}
+.data-table .selected-row:hover {
+  background-color: #bfdbfe;
+}
+
+/* Modal & Success Message Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
+}
+.modal-content {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 2rem;
+  width: 100%;
+  max-width: 28rem;
+  text-align: center;
+}
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+.modal-body {
+  color: #4b5563;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.modal-button {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  font-family: "Sarabun", sans-serif;
+  font-weight: 500;
+}
+.modal-button.cancel {
+  background-color: #e5e7eb;
+  color: #1f2937;
+}
+.modal-button.cancel:hover {
+  background-color: #d1d5db;
+}
+.modal-button.confirm {
+  background-color: #16a34a;
+  color: white;
+}
+.modal-button.confirm:hover {
+  background-color: #15803d;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* เพิ่มสไตล์สำหรับเมนูนำทาง */
+.navigation-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1f2937;
+  padding: 10px 20px;
+  display: flex;
+  gap: 20px;
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.navigation-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+.navigation-menu a:hover {
+  background-color: #4b5563;
+}
+.navigation-menu a.active {
+  background-color: #3b82f6;
+  font-weight: bold;
+}
+
+/* ปรับ layout หลักให้มีที่ว่างสำหรับเมนู */
+body {
+  padding-top: 60px; /* ความสูงของเมนู + padding */
+}

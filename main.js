@@ -2,35 +2,33 @@ const { app, BrowserWindow } = require("electron");
 const path = require("path");
 
 function createWindow() {
-  // สร้างหน้าต่างเบราว์เซอร์ใหม่
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1200, // เพิ่มความกว้างเพื่อให้พอดีกับฟอร์ม
+    height: 800,
     webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
+      // preload: path.join(__dirname, 'preload.js'), // ปิดไว้ก่อนถ้ายังไม่ได้ใช้
+      nodeIntegration: true, // อาจจำเป็นสำหรับการทำงานบางอย่างในอนาคต
+      contextIsolation: false,
     },
   });
 
-  // โหลดไฟล์ index.html
+  // โหลดไฟล์ index.html ของเรา (หน้าฟอร์ม)
   win.loadFile("index.html");
 
-  // เปิด DevTools (ใช้สำหรับดีบั๊ก)
+  // เปิด DevTools สำหรับดีบั๊ก
   // win.webContents.openDevTools();
 }
 
-// เมื่อ Electron พร้อมทำงาน ให้สร้างหน้าต่างขึ้นมา
 app.whenReady().then(() => {
   createWindow();
 
   app.on("activate", () => {
-    // สำหรับ macOS, ให้สร้างหน้าต่างใหม่หากไม่มี
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
     }
   });
 });
 
-// ปิดแอปพลิเคชันเมื่อหน้าต่างทั้งหมดถูกปิด (ยกเว้น macOS)
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
     app.quit();
