@@ -57,6 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
     showedUpSection: document.getElementById("showedUpSection"),
     noShowSection: document.getElementById("noShowSection"),
     appointmentDate: document.getElementById("appointmentDate"),
+    // เพิ่มส่วนของ Modal ที่หายไป
+    confirmModal: document.getElementById("followUpConfirmModal"),
+    cancelButton: document.getElementById("followUpCancelButton"),
+    confirmButton: document.getElementById("followUpConfirmButton"),
+    successMessage: document.getElementById("followUpSuccessMessage"),
   };
 
   const resetFollowUpForm = () => {
@@ -176,34 +181,55 @@ document.addEventListener("DOMContentLoaded", () => {
   elements.searchNameInput.addEventListener("input", handleSearch);
   elements.searchPhoneInput.addEventListener("input", handleSearch);
 
+  // แก้ไข `submit` event listener ให้เรียก Modal
   elements.followUpForm.addEventListener("submit", (e) => {
     e.preventDefault();
     if (!elements.saveFollowUpButton.disabled) {
-      console.log("บันทึกข้อมูล:", {
-        customer: selectedCustomer,
-        followUp: followUpState,
-      });
-      alert("บันทึกการติดตามเรียบร้อยแล้ว!");
-      selectCustomer(selectedCustomer);
+      elements.confirmModal.style.display = "flex";
     }
   });
 
+  // เพิ่ม event listener สำหรับปุ่มใน Modal
+  elements.cancelButton.addEventListener("click", () => {
+    elements.confirmModal.style.display = "none";
+  });
+
+  elements.confirmButton.addEventListener("click", () => {
+    elements.confirmModal.style.display = "none";
+    elements.successMessage.style.display = "block";
+    console.log("บันทึกข้อมูล:", {
+      customer: selectedCustomer,
+      followUp: followUpState,
+    });
+    setTimeout(() => {
+      elements.successMessage.style.display = "none";
+    }, 3000);
+    selectCustomer(selectedCustomer);
+  });
+
+  elements.followUpForm.addEventListener("input", (e) => {
+    const { name, value, id } = e.target;
+    if (id === "followUpNotes") {
+      followUpState.notes = value;
+    } else if (name) {
+      followUpState[name] = value;
+    }
+    updateFormLogic();
+  });
+
+  // ใช้ 'change' สำหรับ radio buttons และ date picker
   elements.followUpForm.addEventListener("change", (e) => {
     const { name, value } = e.target;
     if (name) {
       followUpState[name] = value;
-
-      // --- ส่วนที่เพิ่มเข้ามา ---
       if (name === "appointmentStatus") {
         if (value === "มาตามนัด") {
-          // เคลียร์ค่าของฝั่ง "ไม่มาตามนัด"
           followUpState.furtherFollowUp = "";
           const furtherFollowUpRadio = document.querySelector(
             'input[name="furtherFollowUp"]:checked'
           );
           if (furtherFollowUpRadio) furtherFollowUpRadio.checked = false;
         } else if (value === "ไม่มาตามนัด") {
-          // เคลียร์ค่าของฝั่ง "มาตามนัด"
           followUpState.customerStatus = "";
           followUpState.salesType = "";
           const customerStatusRadio = document.querySelector(
@@ -216,14 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (salesTypeRadio) salesTypeRadio.checked = false;
         }
       }
-      // --- สิ้นสุดส่วนที่เพิ่มเข้ามา ---
-
-      updateFormLogic();
     }
-  });
-  elements.followUpForm.addEventListener("input", (e) => {
-    if (e.target.id === "followUpNotes") followUpState.notes = e.target.value;
-    else if (e.target.name) followUpState[e.target.name] = e.target.value;
     updateFormLogic();
   });
 

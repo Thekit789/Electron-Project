@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     notes: "",
   };
 
-  // --- STATIC DATA (ข้อมูลคงที่) ---
+  // --- MOCKUP DATA ---
   const hondaModels = [
     "Wave 110",
     "Wave 125",
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- CORE FUNCTIONS (ฟังก์ชันหลัก) ---
 
-  // **แก้ไขจุดสำคัญ:** ฟังก์ชันอัปเดตสถานะของปุ่ม Submit
+  // ฟังก์ชันอัปเดตสถานะของปุ่ม Submit
   function updateFormValidity() {
     // ตรวจสอบเงื่อนไขทั้ง 4 ข้อ
     const isFormValid =
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     elements.submitButton.disabled = !isFormValid;
   }
 
-  // ฟังก์ชันผู้ช่วย: จัดการการแสดงผล error และเรียก updateFormValidity
+  // ฟังก์ชันจัดการการแสดงผล error และเรียก updateFormValidity
   function handleValidation(inputElement, errorElement, validator) {
     const isValid = validator();
     if (errorElement) {

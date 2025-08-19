@@ -1,4 +1,3 @@
-/* --- เริ่มต้น สไตล์จาก FormView.vue --- */
 /* General Page Styles */
 .form-page-container {
   font-family: "Sarabun", sans-serif;
@@ -246,9 +245,9 @@
   opacity: 0;
 }
 
-/* --- สิ้นสุด สไตล์จาก FormView.vue --- */
+/* --- สิ้นสุด index --- */
 
-/* --- เริ่มต้น สไตล์จาก FollowView.vue --- */
+/* --- เริ่มต้น follow --- */
 .page-container {
   font-family: "Sarabun", sans-serif;
   background: linear-gradient(to bottom, #0b0b2b, #1b2735 70%, #090a0f);
@@ -505,8 +504,7 @@ fieldset:disabled {
   background-color: #bfdbfe;
 }
 
-/* Modal & Success Message Styles */
-.modal-overlay {
+Modal & Success Message Styles .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -576,7 +574,7 @@ fieldset:disabled {
   opacity: 0;
 }
 
-/* เพิ่มสไตล์สำหรับเมนูนำทาง */
+/* สไตล์เมนูนำทาง */
 .navigation-menu {
   position: fixed;
   top: 0;
